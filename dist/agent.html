@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <style>
+        .font-roman {
+            font-family: "Times New Roman", Times, serif;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#003663",
+                    },
+                },
+            },
+        };
+    </script>
+    <title>Travel Agents</title>
+</head>
+
+<body>
+    <!-- Navbar Component -->
+    <nav aria-label="navbar" x-data class="bg-[#003663] w-full z-50">
+        <div class="mx-auto max-w-screen-xl px-3 md:px-3 py-0">
+            <div class="flex items-center justify-between">
+                <ul class="flex items-center gap-x-8">
+                    <li class="mr-4 ">
+                        <a class="cursor-pointer">
+                            <img class="h-10" src="./src/images/logo-white.png" alt="Travel Quoter Website Logo" />
+                        </a>
+                    </li>
+                    <li class="hidden lg:block md:">
+                        <a class="cursor-pointer text-sm text-white hover:text-white/70 focus:text-white/70">Home</a>
+                    </li>
+                    <li class="hidden lg:block">
+                        <a class="cursor-pointer text-sm text-white hover:text-white/70 focus:text-white/70">Travel
+                            Alerts</a>
+                    </li>
+                    <li class="hidden lg:block">
+                        <a class="cursor-pointer text-sm text-white hover:text-white/70 focus:text-white/70">Offers</a>
+                    </li>
+                    <li class="hidden lg:block">
+                        <a class="cursor-pointer text-sm text-white hover:text-white/70 focus:text-white/70">About
+                            Us</a>
+                    </li>
+                    <li class="hidden lg:block">
+                        <a class="cursor-pointer text-sm text-white hover:text-white/70 focus:text-white/70">Contact
+                            Us</a>
+                    </li>
+                </ul>
+                <ul class="flex items-center gap-x-4">
+                    <a href="">
+                        <img src="./src/images/notification.png" alt="" class="h-7 w-7 hidden lg:block">
+                    </a>
+                    <a href="/" class="flex">
+                        <img src="./src/images/img_user.svg" alt="" class="h-20 w-1h-20 hidden lg:block">
+                        <img src="./src/images/Icon color.svg" alt="" class="h-5 w-4 hidden lg:block my-8">
+
+                    </a>
+                    <a href="/">
+                    </a>
+
+                    <li class="lg:hidden">
+                        <button aria-label="menu" x-on:click="
+                    document.querySelector('#sidenavbar').classList.remove('w-0');
+                    document.querySelector('#sidenavbar').classList.add('w-full');
+                    " class="flex items-center gap-x-1 rounded-2xl bg-white p-3 text-sm font-medium text-[#1C4C74] transition-all duration-200 hover:opacity-90">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="h-5 w-5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <h2 class="text-2xl font-semibold leading-9 tracking-tight text-slate-900">Travel agents</h2>
+        
+        <section class="grid grid-cols-1 gap-x-6 gap-y-10 pt-10 lg:grid-cols-3">
+            <!-- Sidebar -->
+            <div class="max-w-screen-xl px-3">
+
+                <div class="relative my-14 mx-0">
+                    <div
+                        class="bg-white border border-gray-200 w-96  max-h-full left-120 top-96 rounded-xl shadow-md p-4 mr-10  mt-0">
+                        <h1 class="text-lg font-bold relative">Filter By</h1>
+
+                        <hr class="absolute left-0 w-96 border-t border-gray-200 mt-2">
+                        <p class="text-gray-500 dark:text-gray-400">
+
+                        <ul class="list-none p-0 my-3">
+                            <li class="flex items-center py-2">
+                                <input type="radio" id="all" name="country" class="mr-2 rounded-2xl border-gray-300"
+                                    checked>
+                                <label for="all" class="cursor-pointer">All</label>
+                            </li>
+                            <li class="flex items-center py-2">
+                                <input type="radio" id="australia" name="country"
+                                    class="mr-2 rounded-full border-gray-300">
+                                <label for="australia" class="cursor-pointer">Australia</label>
+                            </li>
+                            <li class="flex items-center py-2">
+                                <input type="radio" id="international" name="country"
+                                    class="mr-2 rounded-full border-gray-300">
+                                <label for="international" class="cursor-pointer">International</label>
+                            </li>
+                        </ul>
+                        <div class="mt-4">
+                            <select id="countries" name="countries"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                <option value="" selected>Choose Country</option>
+                            </select>
+                        </div>
+
+                        <!-- category -->
+                        <hr class="absolute left-0 w-96 border-t border-gray-200 mt-2 my-3">
+                        <h1 class="text-lg font-bold my-3 hidden lg:block">Category</h1>
+                        <ul class="list-none p-0 my-0 hidden lg:block">
+                            <li class="flex items-center py-2" hidden lg:block>
+                                <input type="radio" id="all" name="category" class="mr-2 rounded-full border-gray-300"
+                                    checked>
+                                <label for="all" class="cursor-pointer hidden lg:block">All</label>
+                            </li>
+                            <li class="flex items-center py-2">
+                                <input type="radio" id="australia" name="category"
+                                    class="mr-2 rounded-full border-gray-300 hidden lg:block">
+                                <label for="australia" class="cursor-pointer hidden lg:block">Nearby</label>
+                            </li>
+                            <li class="flex items-center py-2">
+                                <input type="radio" id="international" name="category"
+                                    class="mr-2 rounded-full border-gray-300 hidden lg:block">
+                                <label for="international" class="cursor-pointer hidden lg:block">Top</label>
+                            </li>
+                            <li class="flex items-center py-2">
+                                <input type="radio" id="international" name="category"
+                                    class="mr-2 rounded-full border-gray-300 hidden lg:block">
+                                <label for="international" class="cursor-pointer hidden lg:block">Recent</label>
+                            </li>
+                            <li class="flex items-center py-2">
+                                <input type="radio" id="international" name="category"
+                                    class="mr-2 rounded-full border-gray-300 hidden lg:block">
+                                <label for="international" class="cursor-pointer hidden lg:block">Bookmarked</label>
+                            </li>
+                            </li>
+                            <li class="flex items-center py-2">
+                                <input type="radio" id="international" name="category"
+                                    class="mr-2 rounded-full border-gray-300 hidden lg:block">
+                                <label for="international" class="cursor-pointer hidden lg:block">Radius</label>
+                            </li>
+                        </ul>
+
+                        <!-- Quote number -->
+                        <hr class="absolute left-0 w-96 border-t border-gray-200 mt-2 hidden lg:block">
+                        <h1 class="text-lg font-bold my-3 hidden lg:block">Quote number</h1>
+                        <ul class="list-none p-0 hidden lg:block">
+                            <div class="mt-4">
+                                <select id="countries" name="countries"
+                                    class="mt-1 w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm hidden lg:block">
+                                    <option value="" selected>Choose Country</option>
+                                </select>
+                            </div>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- search -->
+
+            <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2">
+                <section>
+                    <div class="search-bar">
+                        <form>
+                            <label for="default-search"
+                                class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                            <div class="relative">
+                                <input type="search" id="default-search"
+                                    class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-2xl bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Search by agent name" required>
+                                <button type="submit"
+                                    class="text-white absolute right-2.5 bottom-2.5 focus:ring-4 focus:outline-none bg-[#003663] focus:ring-blue-300 font-medium rounded-lg text-sm  dark:hover:bg-blue-700 dark:focus:ring-blue-800 p-2">
+                                    <svg aria-hidden="true" class="w-5 h-5 text-white dark:text-gray-400" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+    
+                    </div>
+                    <!-- Content goes here -->
+                <div class="w-full">
+
+                    <h1 class="text-2xl font-bold my-6">Top Rated Travel Agents</h1>
+
+                    <div class="columns-3">
+
+                        <div class="item">
+                            <div
+                                class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                <a href="#">
+                                    <img class="rounded-t-lg" src="./src/images/img1.png" alt="" />
+                                </a>
+                                <div class="p-5">
+                                    <a href="#">
+                                        <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
+                                            Infinity Travel</h5>
+                                    </a>
+                                    <div class="rating">
+                                        <div class="flex items-center">
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>First star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Second star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Third star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Fourth star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                                                fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <title>Fifth star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <p class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">4.95
+                                                out of 5</p>
+                                        </div>
+
+                                        <div class="flex location my-2 text-gray-500">
+                                            <img src="./src/images/map.svg" alt="" class="me-2">
+                                            Machu Pichu
+
+                                        </div>
+
+                                        <div class="quatation  text-gray-500">
+                                            105 Quotes Received
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div
+                                class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                <a href="#">
+                                    <img class="rounded-t-lg" src="./src/images/img2.png" alt="" />
+                                </a>
+                                <div class="p-5">
+                                    <a href="#">
+                                        <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
+                                            Infinity Travel</h5>
+                                    </a>
+                                    <div class="rating">
+                                        <div class="flex items-center">
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>First star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Second star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Third star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Fourth star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                                                fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <title>Fifth star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <p class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">4.95
+                                                out of 5</p>
+                                        </div>
+
+                                        <div class="flex location my-2 text-gray-500">
+                                            <img src="./src/images/map.svg" alt="" class="me-2">
+                                            Machu Pichu
+
+                                        </div>
+
+                                        <div class="quatation  text-gray-500">
+                                            105 Quotes Received
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div
+                                class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                <a href="#">
+                                    <img class="rounded-t-lg" src="./src/images/img3.png" alt="" />
+                                </a>
+                                <div class="p-5">
+                                    <a href="#">
+                                        <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
+                                            Infinity Travel</h5>
+                                    </a>
+                                    <div class="rating">
+                                        <div class="flex items-center">
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>First star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Second star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Third star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Fourth star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                                                fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <title>Fifth star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <p class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">4.95
+                                                out of 5</p>
+                                        </div>
+
+                                        <div class="flex location my-2 text-gray-500">
+                                            <img src="./src/images/map.svg" alt="" class="me-2">
+                                            Machu Pichu
+
+                                        </div>
+
+                                        <div class="quatation  text-gray-500">
+                                            105 Quotes Received
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                </section>
+                
+
+                
+                <div class="w-full">
+
+                    <h1 class="text-2xl font-bold my-6">Top Rated Travel Agents</h1>
+
+                    <div class="columns-3">
+
+                        <div class="item">
+                            <div
+                                class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                <a href="#">
+                                    <img class="rounded-t-lg" src="./src/images/img1.png" alt="" />
+                                </a>
+                                <div class="p-5">
+                                    <a href="#">
+                                        <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
+                                            Infinity Travel</h5>
+                                    </a>
+                                    <div class="rating">
+                                        <div class="flex items-center">
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>First star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Second star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Third star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Fourth star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                                                fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <title>Fifth star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <p class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">4.95
+                                                out of 5</p>
+                                        </div>
+
+                                        <div class="flex location my-2 text-gray-500">
+                                            <img src="./src/images/map.svg" alt="" class="me-2">
+                                            Machu Pichu
+
+                                        </div>
+
+                                        <div class="quatation  text-gray-500">
+                                            105 Quotes Received
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div
+                                class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                <a href="#">
+                                    <img class="rounded-t-lg" src="./src/images/img2.png" alt="" />
+                                </a>
+                                <div class="p-5">
+                                    <a href="#">
+                                        <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
+                                            Infinity Travel</h5>
+                                    </a>
+                                    <div class="rating">
+                                        <div class="flex items-center">
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>First star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Second star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Third star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Fourth star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                                                fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <title>Fifth star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <p class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">4.95
+                                                out of 5</p>
+                                        </div>
+
+                                        <div class="flex location my-2 text-gray-500">
+                                            <img src="./src/images/map.svg" alt="" class="me-2">
+                                            Machu Pichu
+
+                                        </div>
+
+                                        <div class="quatation  text-gray-500">
+                                            105 Quotes Received
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item" ->
+                            <div
+                                class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                <a href="#">
+                                    <img class="rounded-t-lg" src="./src/images/img3.png" alt="" />
+                                </a>
+                                <div class="p-5">
+                                    <a href="#">
+                                        <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
+                                            Infinity Travel</h5>
+                                    </a>
+                                    <div class="rating">
+                                        <div class="flex items-center">
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>First star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Second star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Third star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Fourth star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                                                fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <title>Fifth star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <p class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">4.95
+                                                out of 5</p>
+                                        </div>
+
+                                        <div class="flex location my-2 text-gray-500">
+                                            <img src="./src/images/map.svg" alt="" class="me-2">
+                                            Machu Pichu
+
+                                        </div>
+
+                                        <div class="quatation  text-gray-500">
+                                            105 Quotes Received
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="w-full">
+
+                    <h1 class="text-2xl font-bold my-6">Other travel partners</h1>
+
+                    <div class="columns-3">
+
+                        <div class="item">
+                            <div
+                                class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                <a href="#">
+                                    <img class="rounded-t-lg" src="./src/images/img1.png" alt="" />
+                                </a>
+                                <div class="p-5">
+                                    <a href="#">
+                                        <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
+                                            Infinity Travel</h5>
+                                    </a>
+                                    <div class="rating">
+                                        <div class="flex items-center">
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>First star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Second star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Third star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Fourth star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                                                fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <title>Fifth star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <p class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">4.95
+                                                out of 5</p>
+                                        </div>
+
+                                        <div class="flex location my-2 text-gray-500">
+                                            <img src="./src/images/map.svg" alt="" class="me-2">
+                                            Machu Pichu
+
+                                        </div>
+
+                                        <div class="quatation  text-gray-500">
+                                            105 Quotes Received
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div
+                                class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                <a href="#">
+                                    <img class="rounded-t-lg" src="./src/images/img2.png" alt="" />
+                                </a>
+                                <div class="p-5">
+                                    <a href="#">
+                                        <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
+                                            Infinity Travel</h5>
+                                    </a>
+                                    <div class="rating">
+                                        <div class="flex items-center">
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>First star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Second star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Third star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Fourth star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                                                fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <title>Fifth star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <p class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">4.95
+                                                out of 5</p>
+                                        </div>
+
+                                        <div class="flex location my-2 text-gray-500">
+                                            <img src="./src/images/map.svg" alt="" class="me-2">
+                                            Machu Pichu
+
+                                        </div>
+
+                                        <div class="quatation  text-gray-500">
+                                            105 Quotes Received
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div
+                                class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                <a href="#">
+                                    <img class="rounded-t-lg" src="./src/images/img3.png" alt="" />
+                                </a>
+                                <div class="p-5">
+                                    <a href="#">
+                                        <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
+                                            Infinity Travel</h5>
+                                    </a>
+                                    <div class="rating">
+                                        <div class="flex items-center">
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>First star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Second star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Third star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-orange-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <title>Fourth star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <svg aria-hidden="true" class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                                                fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <title>Fifth star</title>
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                            <p class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">4.95
+                                                out of 5</p>
+                                        </div>
+
+                                        <div class="flex location my-2 text-gray-500">
+                                            <img src="./src/images/map.svg" alt="" class="me-2">
+                                            Machu Pichu
+
+                                        </div>
+
+                                        <div class="quatation  text-gray-500">
+                                            105 Quotes Received
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full">
+            <!-- <div class="ml-full w-full"> -->
+
+
+        </section>
+    </main>
+
+    <!-- Add Options Popups -->
+
+
+    <!-- Footer Component -->
+    <footer aria-label="Site footer" class="bg-[#013663] my-8">
+        <div class="relative">
+            <div class="mx-auto max-w-screen-xl px-3 md:px-8 pt-8 pb-20">
+                <div class="grid grid-cols-12 gap-y-8 sm:gap-8">
+                    <div class="col-span-12 sm:col-span-12 md:col-span-4 lg:col-span-4">
+                        <div>
+                            <a href="/"
+                                class="flex cursor-pointer items-center gap-x-1 text-gray-300 transition-all duration-300 hover:opacity-80">
+                                <img class="w-44" src="./img/icons/logo-white-icon.svg" alt="Travel Quoter Logo" />
+                            </a>
+                            <div class="mt-4 font-medium text-white">Follow us</div>
+                            <ul class="mt-6 flex gap-6">
+                                <li>
+                                    <a href="/" rel="noreferrer" target="_blank"
+                                        class="text-gray-300 transition hover:text-gray-300/60 focus:text-gray-300/60">
+                                        <span class="sr-only">Facebook</span>
+                                        <img src="./src/images/lnkdn.png" alt="" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/" rel="noreferrer" target="_blank"
+                                        class="text-gray-300 transition hover:text-gray-300/60 focus:text-gray-300/60">
+                                        <span class="sr-only">Facebook</span>
+                                        <img src="./src/images/facebook.png" alt="" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/" rel="noreferrer" target="_blank"
+                                        class="text-gray-300 transition hover:text-gray-300/60 focus:text-gray-300/60">
+                                        <span class="sr-only">Facebook</span>
+                                        <img src="./src/images/instragram.png" alt="" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/" rel="noreferrer" target="_blank"
+                                        class="text-gray-300 transition hover:text-gray-300/60 focus:text-gray-300/60">
+                                        <span class="sr-only">Facebook</span>
+                                        <img src="./src/images/tiktok.png" alt="" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-span-6 sm:col-span-4 md:col-span-4 lg:col-span-2">
+                        <ul class="flex flex-col gap-y-2">
+                            <li class="text-lg font-medium text-gray-200">Quick Links</li>
+                            <li>
+                                <a class="cursor-pointer text-sm text-gray-300 hover:text-gray-300/60">Home</a>
+                            </li>
+                            <li>
+                                <a class="cursor-pointer text-sm text-gray-300 hover:text-gray-300/60">About Us</a>
+                            </li>
+                            <li>
+                                <a class="cursor-pointer text-sm text-gray-300 hover:text-gray-300/60">Contact Us</a>
+                            </li>
+                            <li>
+                                <a class="cursor-pointer text-sm text-gray-300 hover:text-gray-300/60">Why Us</a>
+                            </li>
+                            <li>
+                                <a class="cursor-pointer text-sm text-gray-300 hover:text-gray-300/60">FAQ</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-span-6 sm:col-span-4 md:col-span-4 lg:col-span-2">
+                        <ul class="flex flex-col gap-y-2">
+                            <li class="text-lg font-medium text-gray-200">Our Services</li>
+                            <li>
+                                <a class="cursor-pointer text-sm text-gray-300 hover:text-gray-300/60">Flights</a>
+                            </li>
+                            <li>
+                                <a class="cursor-pointer text-sm text-gray-300 hover:text-gray-300/60">Accommodation</a>
+                            </li>
+                            <li>
+                                <a class="cursor-pointer text-sm text-gray-300 hover:text-gray-300/60">Car Hire</a>
+                            </li>
+                            <li>
+                                <a class="cursor-pointer text-sm text-gray-300 hover:text-gray-300/60">Cruise</a>
+                            </li>
+                            <li>
+                                <a class="cursor-pointer text-sm text-gray-300 hover:text-gray-300/60">Insurance</a>
+                            </li>
+                            <li>
+                                <a class="cursor-pointer text-sm text-gray-300 hover:text-gray-300/60">Visa</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-span-6 sm:col-span-4 md:col-span-4 lg:col-span-2">
+                        <ul class="flex flex-col gap-y-2">
+                            <li class="text-lg font-medium text-gray-200">Travel</li>
+                            <li>
+                                <a class="cursor-pointer text-sm text-gray-300 hover:text-gray-300/60">Blogs</a>
+                            </li>
+                            <li>
+                                <a class="cursor-pointer text-sm text-gray-300 hover:text-gray-300/60">Articles</a>
+                            </li>
+                            <li>
+                                <a class="cursor-pointer text-sm text-gray-300 hover:text-gray-300/60">Alerts</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-span-6 sm:col-span-4 md:col-span-4 lg:col-span-2">
+                        <ul class="flex flex-col gap-y-2">
+                            <li class="text-lg font-medium text-gray-200">Parents</li>
+                            <li>
+                                <a class="cursor-pointer text-sm text-gray-300 hover:text-gray-300/60">Advertise With
+                                    Us</a>
+                            </li>
+                            <li>
+                                <a class="cursor-pointer text-sm text-gray-300 hover:text-gray-300/60">Agent
+                                    Membership</a>
+                            </li>
+                            <li>
+                                <a class="cursor-pointer text-sm text-gray-300 hover:text-gray-300/60">Offers</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute bottom-0">
+                <img class="w-screen h-auto" src="./img/shapes/footer-shape.svg" alt="" />
+            </div>
+        </div>
+
+        <div class="bg-[#03335C]">
+            <div class="mx-auto max-w-screen-xl px-3 md:px-8 py-4">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-2">
+                    <div>
+                        <ul class="flex items-center gap-x-2">
+                            <li>
+                                <a href="" class="cursor-pointer text-xs text-gray-300 hover:text-gray-300/60">Terms and
+                                    Conditions</a>
+                            </li>
+                            <li>
+                                <a href="" class="cursor-pointer text-xs text-gray-300 hover:text-gray-300/60">Privacy
+                                    Policy</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="cursor-pointer text-xs text-gray-300">
+                        Travel Quoter, All Rights Reserved
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
